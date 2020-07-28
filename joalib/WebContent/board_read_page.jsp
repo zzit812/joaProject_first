@@ -132,11 +132,12 @@
 					<div id="board_text"><%out.print(dto.getBoard_text());%></div>            
 					<div class="button">	<!-- 버튼 -->
 					<% int sitePage = (Integer)session.getAttribute("boardPageNum"); %>
-					<a href='board.jsp?sitePage=<%= sitePage%>'><input type="button" value = "목록"/></a>
+					<input type="button" value = "목록" onClick="location.href='board.jsp?sitePage=<%= sitePage%>'"/>
 					<%	
-						if ( member_id != null && member_id.equals(dto.getMember_id())) {
-							out.print("<a href='board_update_page.jsp'><input type='button'  value = '수정'/></a> <a href='board_delete.jsp'><input type='button' value = '삭제'/></a>"); }
-					%>							
+						if ( member_id != null && member_id.equals(dto.getMember_id())) { %>
+							<input type='button'  value = '수정' onClick="location.href='board_update_page.jsp'"/>
+							<input type='button'  value = '삭제' onClick="location.href='board_delete.jsp'"/>
+					<% }%>							
 					</div>		   
 				</div>
 			</div>
