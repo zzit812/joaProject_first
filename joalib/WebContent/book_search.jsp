@@ -1,3 +1,13 @@
+<%@page import="java.util.ArrayList"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ page import="java.util.List" %>
+<%@ page import = "db_board_action.dbAction" %>
+<%@ page import="db_table_dao.DAO" %>
+<%@ page import="db_board_dto.DTO" %>
+<%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
+<%@page import="org.apache.ibatis.session.SqlSession"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -301,20 +311,100 @@
 					</div>
 				</div>
 			</div>
+			
+			<%
+			  		DAO dao = new DAO(); 	
+			  		
+				  	int sitePage =1 ;	//현재페이지 //초기 페이지 = 1
+				  	if(request.getParameter("sitePage") != null){
+				  		sitePage = Integer.parseInt(request.getParameter("sitePage"));
+				  	}
+				  	session.setAttribute("boardPageNum",sitePage);
+				  	
+				  	int countList = 10;	//한페이지당 보여지는 게시글 최대 갯수 
+				  	int countPage = 10;	//한화면에 보여지는 페이지 최대 갯수
+				  	int totalCount = dao.select_board_total();	//게시물 총 갯수			  	
+				  	
+				  	int totalPage = totalCount / countList;	//페이지 갯수
+				  	
+				  	if (totalCount % countList > 0) {
+				  	    //	'전체게시글 수 / 게시글 최대 갯수' 의 나머지가 0보다 크면 페이지갯수를 플러스한다.
+				  		totalPage++; }
+		
+				  	if (totalPage < sitePage) {
+				  		sitePage = totalPage;  	} 
+		
+				  	int startPage = ((sitePage - 1) / 10) * 10 + 1;	//보여지는 시작 페이지
+					
+				  	int endPage = 1;	//보여지는 마지막 페이지
+				  	if(totalPage < countPage){
+				  		endPage = totalPage  ;	//만약 총게시글 페이지가 최대갯수보다 작으면 endPage = totalPage;
+				  	}else{
+				  		endPage = startPage + countPage - 1;
+				  	}
+				  	%>				  	
+		  			<%
+		  			// 페이지당 게시물을 담는다.
+		  			// array 에 게시물을 담고, 배열에는 페이지를 담았다.	
+		  			
+		  			int count = 0; 
+		  			List<DTO> list = dao.select_board_all();
+		  			ArrayList<DTO> array;							//array 하나당 하나의 페이지 > ex) array(0).get > = 페이지의 첫번째 게시물
+		  			ArrayList[] pageList = new ArrayList[totalPage];//전체 페이지를 관리하는 배열 > ex) pageList(0) = 첫번째 페이지
+		  			
+		  			   //게시물총수 한페이지당게시물수
+		  			if(totalCount % countList == 0 ){
+		  				//나눈값이 0이다.
+		  				for(int x = 0; x < totalPage; x++ ){
+		  					              //페이지 갯수
+		  					array = new ArrayList<DTO>();
+		  					for(int y = 0 ; y < countList; y++){		  						
+			  					array.add(list.get(count));
+			  					//count 0에서 시작함. countList가 10이니까, 그만큼
+			  					count++;
+			  					//이게 계속올라가면서 페이지갯수까지 오르는거임
+		  					}
+		  					pageList[x] = array;
+		  					//x가 페이지갯수만큼 돔. array에 게시글 10개를 담아놈.
+		  					
+		  				}
+		  			}else{
+		  				//나눈값이 0이 아니다.
+		  				for(int x = 0; x < (totalPage-1); x++ ){
+		  					
+		  					
+		  					array = new ArrayList<DTO>();
+		  					//마지막 페이지 전까지 어레이에 담는다.		  					
+		  					for(int y = 0 ; y < countList; y++){		  						
+			  					array.add(list.get(count));
+			  					count++;
+		  					}
+		  					pageList[x] = array;
+		  				}		  	
+		  				
+		  				array = new ArrayList<DTO>();
+		  				for(int lastCount = count ; lastCount < totalCount ; lastCount++){		  					
+		  					array.add(list.get(lastCount));		  					
+		  				}
+		  				pageList[totalPage-1] = array;
+		  			}
+		  			%>
 		
 			<div class="pagination">
 				<a href="#" class="prev"><i class="fa fa-angle-double-left"></i> Prev</a>
-				<a href="#" class="page-number">1</a>
-				<a href="#" class="page-number">2</a>
-				<a href="#" class="page-number active">3</a>
-				<a href="#" class="page-number">4</a>
-				<a href="#" class="page-number">5</a>
-				<a href="#" class="page-number">6</a>
-				<a href="#" class="page-number">7</a>
-				<a href="#" class="page-number">8</a>
-				<a href="#" class="page-number">9</a>
-				<a href="#" class="page-number">10</a>
-				<a href="#" class="next">Next <i class="fa fa-angle-double-right"></i></i></a>
+				<%		
+			  	for (int iCount = startPage; iCount <= endPage; iCount++) {
+	
+			  	    //if (iCount == sitePage) {
+			  	       out.print(" <a href='board.jsp?sitePage="+iCount+"' class='page-number'> "+iCount+ "</a>");
+			  	       
+			  	       //<a href ='board.jsp?sitePage= 2' ></a>
+			  	   // } else {
+			  	   //     out.print(" <a href='board.jsp?sitePage=" + iCount + " class='page-number'>" +iCount+"</a>");
+			  	   // }		
+			  	}
+		  		%>
+		  		<a href="#" class="next">Next <i class="fa fa-angle-double-right"></i></i></a>
 			</div>
 
 

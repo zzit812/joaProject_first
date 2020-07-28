@@ -181,7 +181,7 @@
 
 		}
 
-		/*/////////////////////////////////////////////검색바/////////////////////////////*/
+		/*/////////////////////////////////////////////寃��깋諛�/////////////////////////////*/
 		#hbz-searchbox {
 			background-color: #F5F5F5;
 			border: 1px solid #EDEDED;
@@ -281,7 +281,7 @@
 		}
 		.pagination a {
 			display: inline-block;
-			min-width: 30px;
+			min-width: 20px;
 			color: black;
 			font-size: 15px;
 			padding: 10px;
