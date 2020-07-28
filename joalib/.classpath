@@ -8,7 +8,8 @@
 	</classpathentry>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry exported="true" kind="lib" path="C:/Program Files/Java/jdk1.8.0_251/jre/lib/ext/mysql-connector-java-5.1.49-bin.jar"/>
-	<classpathentry kind="lib" path="//321-t/제출/최지수/포트폴리오/팀/공유/새 폴더/mybatis-3.2.8.jar"/>
+	<classpathentry kind="lib" path="D:/joaProject_first/joalib/WebContent/WEB-INF/lib/mybatis-3.2.8.jar"/>
+	<classpathentry kind="lib" path="D:/joaProject_first/joalib/WebContent/WEB-INF/lib/mysql-connector-java-5.1.49-bin.jar"/>
+	<classpathentry kind="lib" path="D:/joaProject_first/joalib/WebContent/WEB-INF/lib/servlet-api.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
