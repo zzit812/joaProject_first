@@ -1,6 +1,6 @@
-package db_login_action;
+package com.joalib.login.action;
 
-import db_table_dao.DAO;
+import com.joalib.DAO.DAO;
 
 public class login_check {
 	

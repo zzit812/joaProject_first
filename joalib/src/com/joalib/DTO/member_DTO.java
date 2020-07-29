@@ -1,4 +1,4 @@
-package db_member_dto;
+package com.joalib.DTO;
 
 public class member_DTO {
 	

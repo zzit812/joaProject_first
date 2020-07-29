@@ -2,9 +2,9 @@
 	pageEncoding="utf-8"%>
 <%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@ page import="db_table_dao.DAO" %>
-<%@ page import="db_board_dto.DTO" %>
-<%@ page import="db_board_action.dbAction" %>
+<%@ page import="com.joalib.DAO.DAO" %>
+<%@ page import="com.joalib.DTO.BoardDTO" %>
+<%@ page import="com.joalib.board.action.dbAction" %>
 <%@ page import="java.util.List" %>
 
 

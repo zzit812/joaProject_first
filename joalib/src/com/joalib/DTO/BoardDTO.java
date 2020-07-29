@@ -1,6 +1,6 @@
-package db_board_dto;
+package com.joalib.DTO;
 
-public class DTO {
+public class BoardDTO {
 	static int board_num;	//db에 들어있는 값이 아닌 계속 바뀌는 변수입니다.
 	
 	int board_no;
@@ -15,7 +15,7 @@ public class DTO {
 		return board_num;
 	}
 	public static void setBoard_num(int board_num) {
-		DTO.board_num = board_num;
+		BoardDTO.board_num = board_num;
 	}
 	public int getBoard_hit() {
 		return board_hit;

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="db_table_dao.DAO" %>
+<%@ page import="com.joalib.DAO.DAO" %>
 <% request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html>
 <html>

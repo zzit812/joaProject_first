@@ -1,4 +1,4 @@
-package db_board_action;
+package com.joalib.board.action;
 
 public class board_delete implements dbAction {
 

@@ -1,10 +1,10 @@
-package db_board_action;
+package com.joalib.board.action;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import db_board_action.dbAction;
-import db_table_dao.DAO;
+import com.joalib.DAO.DAO;
+import com.joalib.board.action.dbAction;
 
 public class board_HitUp implements dbAction {
 

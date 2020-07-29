@@ -2,9 +2,9 @@
 	pageEncoding="utf-8"%>
 <%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
-<%@ page import="db_table_dao.DAO" %>
-<%@ page import="db_board_dto.DTO" %>
-<%@ page import="db_board_action.dbAction" %>
+<%@ page import="com.joalib.DAO.DAO" %>
+<%@ page import="com.joalib.DTO.BoardDTO" %>
+<%@ page import="com.joalib.board.action.dbAction" %>
 <%@ page import="java.util.List" %>
 
 
@@ -32,14 +32,14 @@
 			<nav>
 				<ul id="top_nav">
 					<li><a>HOME</a></li> | <li>
-					<%	
+					<%
 						String member_id = null;
-						member_id = (String)session.getAttribute("member_id");
-						if ( member_id != null) {
-							out.print("<a href='logout.jsp'>로그아웃</a>");
-						}else{
-							out.print("<a href='join_1.html'>회원가입</a></li> | <li><a href='login_1.html'>로그인</a>");
-						}
+									member_id = (String)session.getAttribute("member_id");
+									if ( member_id != null) {
+										out.print("<a href='logout.jsp'>로그아웃</a>");
+									}else{
+										out.print("<a href='join_1.html'>회원가입</a></li> | <li><a href='login_1.html'>로그인</a>");
+									}
 					%>
 					</li> | <li><a>포인트충전</a></li>
 				</ul>
@@ -121,11 +121,11 @@
 		<div id="cont_size">
 		    <h1>자유게시판</h1>
 		    <div id="cont_1_size">
-			<%				
-			DAO dao = new DAO();
-			DAO.getinstance();			
-			
-			DTO dto = dao.read_details();	//게시물 dto	
+			<%
+				DAO dao = new DAO();
+				DAO.getinstance();			
+				
+				BoardDTO dto = dao.read_details();	//게시물 dto
 			%>
 			
 				<div id="write_box">                        

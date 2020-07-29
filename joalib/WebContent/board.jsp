@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.List" %>
-<%@ page import = "db_board_action.dbAction" %>
-<%@ page import="db_table_dao.DAO" %>
-<%@ page import="db_board_dto.DTO" %>
+<%@ page import = "com.joalib.board.action.dbAction" %>
+<%@ page import="com.joalib.DAO.DAO" %>
+<%@ page import="com.joalib.DTO.BoardDTO" %>
 <%@page import="org.apache.ibatis.session.SqlSessionFactory"%>
 <%@page import="org.apache.ibatis.session.SqlSession"%>
 <!DOCTYPE html>
@@ -23,7 +23,9 @@
 <body>
 	
 	 <header>
-	 <%String idCheckImpart = null; %>
+	 <%
+	 	String idCheckImpart = null;
+	 %>
 		 <div id="top_size">
 		 	<!--로고-->
 			<img id="logo" src="img/icon_lib.png">
@@ -31,14 +33,14 @@
 			<nav>
 				<ul id="top_nav">
 					<li><a>HOME</a></li> | <li>
-					<%	
+					<%
 						String member_id = null;
-						member_id = (String)session.getAttribute("member_id");
-						if ( member_id != null) {
-							out.print("<a href='logout.jsp'>로그아웃</a>");
-						}else{
-							out.print("<a href='join_1.html'>회원가입</a></li> | <li><a href='login_1.html'>로그인</a>");
-						}
+									member_id = (String)session.getAttribute("member_id");
+									if ( member_id != null) {
+										out.print("<a href='logout.jsp'>로그아웃</a>");
+									}else{
+										out.print("<a href='join_1.html'>회원가입</a></li> | <li><a href='login_1.html'>로그인</a>");
+									}
 					%>
 					</li> | <li><a>포인트충전</a></li>
 				</ul>
@@ -126,102 +128,102 @@
 		  		</ul>
 		  		<div>
 			  		<%
-			  		DAO dao = new DAO(); 	
-			  		
-				  	int sitePage =1 ;	//현재페이지 //초기 페이지 = 1
-				  	if(request.getParameter("sitePage") != null){
-				  		sitePage = Integer.parseInt(request.getParameter("sitePage"));
-				  	}
-				  	session.setAttribute("boardPageNum",sitePage);
-				  	
-				  	int countList = 10;	//한페이지당 보여지는 게시글 최대 갯수 
-				  	int countPage = 10;	//한화면에 보여지는 페이지 최대 갯수
-				  	int totalCount = dao.select_board_total();	//게시물 총 갯수			  	
-				  	
-				  	int totalPage = totalCount / countList;	//페이지 갯수
-				  	
-				  	if (totalCount % countList > 0) {
-				  	    //	'전체게시글 수 / 게시글 최대 갯수' 의 나머지가 0보다 크면 페이지갯수를 플러스한다.
-				  		totalPage++; }
-		
-				  	if (totalPage < sitePage) {
-				  		sitePage = totalPage;  	} 
-		
-				  	int startPage = ((sitePage - 1) / 10) * 10 + 1;	//보여지는 시작 페이지
-					
-				  	int endPage = 1;	//보여지는 마지막 페이지
-				  	if(totalPage < countPage){
-				  		endPage = totalPage  ;	//만약 총게시글 페이지가 최대갯수보다 작으면 endPage = totalPage;
-				  	}else{
-				  		endPage = startPage + countPage - 1;
-				  	}
-				  	%>				  	
+			  			DAO dao = new DAO(); 	
+			  			  		
+			  				  	int sitePage =1 ;	//현재페이지 //초기 페이지 = 1
+			  				  	if(request.getParameter("sitePage") != null){
+			  				  		sitePage = Integer.parseInt(request.getParameter("sitePage"));
+			  				  	}
+			  				  	session.setAttribute("boardPageNum",sitePage);
+			  				  	
+			  				  	int countList = 10;	//한페이지당 보여지는 게시글 최대 갯수 
+			  				  	int countPage = 10;	//한화면에 보여지는 페이지 최대 갯수
+			  				  	int totalCount = dao.select_board_total();	//게시물 총 갯수			  	
+			  				  	
+			  				  	int totalPage = totalCount / countList;	//페이지 갯수
+			  				  	
+			  				  	if (totalCount % countList > 0) {
+			  				  	    //	'전체게시글 수 / 게시글 최대 갯수' 의 나머지가 0보다 크면 페이지갯수를 플러스한다.
+			  				  		totalPage++; }
+			  				
+			  				  	if (totalPage < sitePage) {
+			  				  		sitePage = totalPage;  	} 
+			  				
+			  				  	int startPage = ((sitePage - 1) / 10) * 10 + 1;	//보여지는 시작 페이지
+			  					
+			  				  	int endPage = 1;	//보여지는 마지막 페이지
+			  				  	if(totalPage < countPage){
+			  				  		endPage = totalPage  ;	//만약 총게시글 페이지가 최대갯수보다 작으면 endPage = totalPage;
+			  				  	}else{
+			  				  		endPage = startPage + countPage - 1;
+			  				  	}
+			  		%>				  	
 		  			<%
-		  			// 페이지당 게시물을 담는다.
-		  			// array 에 게시물을 담고, 배열에는 페이지를 담았다.	
-		  			
-		  			int count = 0; 
-		  			List<DTO> list = dao.select_board_all();
-		  			ArrayList<DTO> array;							//array 하나당 하나의 페이지 > ex) array(0).get > = 페이지의 첫번째 게시물
-		  			ArrayList[] pageList = new ArrayList[totalPage];//전체 페이지를 관리하는 배열 > ex) pageList(0) = 첫번째 페이지
-		  			
-		  			   //게시물총수 한페이지당게시물수
-		  			if(totalCount % countList == 0 ){
-		  				//나눈값이 0이다.
-		  				for(int x = 0; x < totalPage; x++ ){
-		  					              //페이지 갯수
-		  					array = new ArrayList<DTO>();
-		  					for(int y = 0 ; y < countList; y++){		  						
-			  					array.add(list.get(count));
-			  					//count 0에서 시작함. countList가 10이니까, 그만큼
-			  					count++;
-			  					//이게 계속올라가면서 페이지갯수까지 오르는거임
-		  					}
-		  					pageList[x] = array;
-		  					//x가 페이지갯수만큼 돔. array에 게시글 10개를 담아놈.
-		  					
-		  				}
-		  			}else{
-		  				//나눈값이 0이 아니다.
-		  				for(int x = 0; x < (totalPage-1); x++ ){
-		  					
-		  					
-		  					array = new ArrayList<DTO>();
-		  					//마지막 페이지 전까지 어레이에 담는다.		  					
-		  					for(int y = 0 ; y < countList; y++){		  						
-			  					array.add(list.get(count));
-			  					count++;
-		  					}
-		  					pageList[x] = array;
-		  				}		  	
-		  				
-		  				array = new ArrayList<DTO>();
-		  				for(int lastCount = count ; lastCount < totalCount ; lastCount++){		  					
-		  					array.add(list.get(lastCount));		  					
-		  				}
-		  				pageList[totalPage-1] = array;
-		  			}
-		  			%>
+				  			  				// 페이지당 게시물을 담는다.
+				  			  					  			// array 에 게시물을 담고, 배열에는 페이지를 담았다.	
+				  			  					  			
+				  			  					  			int count = 0; 
+				  			  					  			List<BoardDTO> list = dao.select_board_all();
+				  			  					  			ArrayList<BoardDTO> array;							//array 하나당 하나의 페이지 > ex) array(0).get > = 페이지의 첫번째 게시물
+				  			  					  			ArrayList[] pageList = new ArrayList[totalPage];//전체 페이지를 관리하는 배열 > ex) pageList(0) = 첫번째 페이지
+				  			  					  			
+				  			  					  			   //게시물총수 한페이지당게시물수
+				  			  					  			if(totalCount % countList == 0 ){
+				  			  					  				//나눈값이 0이다.
+				  			  					  				for(int x = 0; x < totalPage; x++ ){
+				  			  					  					              //페이지 갯수
+				  			  					  					array = new ArrayList<BoardDTO>();
+				  			  					  					for(int y = 0 ; y < countList; y++){		  						
+				  			  				  					array.add(list.get(count));
+				  			  				  					//count 0에서 시작함. countList가 10이니까, 그만큼
+				  			  				  					count++;
+				  			  				  					//이게 계속올라가면서 페이지갯수까지 오르는거임
+				  			  					  					}
+				  			  					  					pageList[x] = array;
+				  			  					  					//x가 페이지갯수만큼 돔. array에 게시글 10개를 담아놈.
+				  			  					  					
+				  			  					  				}
+				  			  					  			}else{
+				  			  					  				//나눈값이 0이 아니다.
+				  			  					  				for(int x = 0; x < (totalPage-1); x++ ){
+				  			  					  					
+				  			  					  					
+				  			  					  					array = new ArrayList<BoardDTO>();
+				  			  					  					//마지막 페이지 전까지 어레이에 담는다.		  					
+				  			  					  					for(int y = 0 ; y < countList; y++){		  						
+				  			  				  					array.add(list.get(count));
+				  			  				  					count++;
+				  			  					  					}
+				  			  					  					pageList[x] = array;
+				  			  					  				}		  	
+				  			  					  				
+				  			  					  				array = new ArrayList<BoardDTO>();
+				  			  					  				for(int lastCount = count ; lastCount < totalCount ; lastCount++){		  					
+				  			  					  					array.add(list.get(lastCount));		  					
+				  			  					  				}
+				  			  					  				pageList[totalPage-1] = array;
+				  			  					  			}
+				  			  			%>
 		  			<%
-		  			// 선택한 페이지의 게시물을 보여준다.  	
-		  			for(int i = 0 ; i < pageList[sitePage-1].size() ; i++){
-		  				ArrayList<DTO> dtoArray = pageList[sitePage-1];		  				
-		  				out.print("<ul><li>");
-		  				out.print(dtoArray.get(i).getBoard_no());
-		  	
-		  				out.print("</li><li><a href='board_click_hitUp.jsp?board_num=" + dtoArray.get(i).getBoard_no() + "'>");
-		  				//ex > http://localhost:8080/board/board_view.jsp? getBoard_no = '1000';
-		  				//누르면 'board_view.jsp' 창으로 가지고 있는 게시글번호와 함께 넘어간다.			  						
-		  				out.print(dtoArray.get(i).getBoard_title());
-		  				out.print("</a></li><li>");
-		  				out.print(dtoArray.get(i).getMember_id());
-		  				out.print("</li><li>");
-		  				out.print(dtoArray.get(i).getBoard_date());
-		  				out.print("</li><li>");
-		  				out.print(dtoArray.get(i).getBoard_hit());	//조회수
-		  				out.print("</li></ul>");
-		  			}		  			
-		  			//페이징 참고 사이트 : https://okky.kr/article/282819 ;
+		  				// 선택한 페이지의 게시물을 보여준다.  	
+		  					  			for(int i = 0 ; i < pageList[sitePage-1].size() ; i++){
+		  					  				ArrayList<BoardDTO> dtoArray = pageList[sitePage-1];		  				
+		  					  				out.print("<ul><li>");
+		  					  				out.print(dtoArray.get(i).getBoard_no());
+		  					  	
+		  					  				out.print("</li><li><a href='board_click_hitUp.jsp?board_num=" + dtoArray.get(i).getBoard_no() + "'>");
+		  					  				//ex > http://localhost:8080/board/board_view.jsp? getBoard_no = '1000';
+		  					  				//누르면 'board_view.jsp' 창으로 가지고 있는 게시글번호와 함께 넘어간다.			  						
+		  					  				out.print(dtoArray.get(i).getBoard_title());
+		  					  				out.print("</a></li><li>");
+		  					  				out.print(dtoArray.get(i).getMember_id());
+		  					  				out.print("</li><li>");
+		  					  				out.print(dtoArray.get(i).getBoard_date());
+		  					  				out.print("</li><li>");
+		  					  				out.print(dtoArray.get(i).getBoard_hit());	//조회수
+		  					  				out.print("</li></ul>");
+		  					  			}		  			
+		  					  			//페이징 참고 사이트 : https://okky.kr/article/282819 ;
 		  			%>
 
 		  		</div>  	

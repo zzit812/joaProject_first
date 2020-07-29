@@ -1,4 +1,4 @@
-package db_table_dao;
+package com.joalib.DAO;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -11,8 +11,8 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import db_board_dto.DTO;
-import db_member_dto.member_DTO;
+import com.joalib.DTO.BoardDTO;
+import com.joalib.DTO.member_DTO;
 
 public class DAO {
 	
@@ -66,10 +66,10 @@ public class DAO {
 	
 	////////////////////////////////////////////////////////////////
 	//board
-	public List<DTO> select_board_all() {	//전체를 뽑아오자
+	public List<BoardDTO> select_board_all() {	//전체를 뽑아오자
 		getinstance();
 		SqlSession sqlsession = sqlfactory.openSession();
-		List <DTO> list = sqlsession.selectList("board_all");
+		List <BoardDTO> list = sqlsession.selectList("board_all");
 		sqlsession.commit();
 		sqlsession.close();
 		return list;
@@ -86,22 +86,22 @@ public class DAO {
 	
 	public void hitUp() {		//조회수 증가
 		SqlSession sqlsession = sqlfactory.openSession();
-		DTO dto = new DTO();
+		BoardDTO dto = new BoardDTO();
 		sqlsession.update("board_hitUp", dto);
 		System.out.println(" *SQL실행완료* ");
 		sqlsession.commit();
 		sqlsession.close();
 		
 	}	
-	public DTO read_details() {
+	public BoardDTO read_details() {
 		SqlSession sqlsession = sqlfactory.openSession();
-		DTO dto = new DTO();
+		BoardDTO dto = new BoardDTO();
 		dto = sqlsession.selectOne("read_details", dto);
 		sqlsession.commit();
 		sqlsession.close();
 		return dto;		
 	}
-	public void myinsert(DTO dto) {
+	public void myinsert(BoardDTO dto) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		dto = sqlsession.selectOne("board_add", dto);
 		sqlsession.commit();
@@ -110,13 +110,13 @@ public class DAO {
 	
 	public void board_del() {
 		SqlSession sqlsession = sqlfactory.openSession();
-		DTO board_dto = new DTO();
+		BoardDTO board_dto = new BoardDTO();
 		sqlsession.delete("board_del", board_dto);
 		sqlsession.commit();
 		sqlsession.close();
 	}
 	
-	public void board_update(DTO dto) {
+	public void board_update(BoardDTO dto) {
 		System.out.println("1");
 		SqlSession sqlsession = sqlfactory.openSession();
 		System.out.println("2");
