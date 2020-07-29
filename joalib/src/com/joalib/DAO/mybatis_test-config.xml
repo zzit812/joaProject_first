@@ -21,7 +21,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     </environments>
     
     <mappers>
-    	<mapper resource = "db_table_dao/mapper.xml" />
+    	<mapper resource = "com_joalib_DAO/mapper.xml" />
     </mappers>
 
 </configuration>
