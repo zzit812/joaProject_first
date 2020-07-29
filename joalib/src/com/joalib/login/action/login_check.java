@@ -6,7 +6,7 @@ public class login_check {
 	
 	DAO dao = new DAO();
 	
-	public login_check(){		
+	public login_check(){
 		DAO.getinstance();
 	}
 	
