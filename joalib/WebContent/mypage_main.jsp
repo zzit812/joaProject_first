@@ -27,7 +27,7 @@
 			<!--탑메뉴-->
 			<nav id="topMenuBorder">
 				<ul id="top_menu">
-					<li><a href="Detailpage2.html">자료검색</a>
+					<li><a href="book_search.jsp">자료검색</a>
 						<ul class ="sub_menu">
 							<li><a href="">도서 검색</a></li>
 							<li><a href="">분야별 도서 조회</a></li>
