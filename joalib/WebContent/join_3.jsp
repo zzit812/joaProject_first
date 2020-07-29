@@ -106,7 +106,7 @@
 		 	<img src="img/character/character1.png"/>
 		 		<form>
 		 			<input type="button" name="loginGo" value="LOGIN">
-		 			<input type="button" name="homeGo" value="HOME">
+		 			<a href="home.jsp"><input type="button" name="homeGo" value="HOME"></a>
 		 		</form>
 		</div>
 	 </section>
