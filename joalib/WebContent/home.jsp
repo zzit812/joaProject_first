@@ -141,11 +141,11 @@ https://www.hancomm.co.kr/index.do
 	<img id="logo" src="img/icon_lib.png" />
 	<nav>
 		<ul>
-			<li><a href="">자료검색</a></li> 	<!-- 자료검색 -->
+			<li><a href="book_search.html">자료검색</a></li> 	<!-- 자료검색 -->
 			<li><a href="">도서마당</a></li>	<!-- 도서마당 -->
 			<li><a href="">이용안내</a></li>	<!-- 이용안내 -->
 			<li><a href="">커뮤니티</a></li>	<!-- 커뮤니티 -->
-			<li><a href="">나의서재</a></li>	<!-- 나의서재 -->
+			<li><a href="mypage_main.jsp">나의서재</a></li>	<!-- 나의서재 -->
 			<!-- <li><a href="">a</a></li> -->
 			<!-- 만약  -->
 		</ul>
