@@ -1,5 +1,5 @@
 package com.joalib.board.action;
 
-public class dbAction {
-
+public interface dbAction  {
+	public void start();	
 }
