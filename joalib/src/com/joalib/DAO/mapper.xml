@@ -6,12 +6,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="SqlData">
 	
-	<insert id="member_insert" parameterType = "db_member_dto.member_DTO" >
+	<insert id="member_insert" parameterType = "com.joalib.DTO.member_DTO" >
 		INSERT INTO joalib.memberinfo VALUES ( #{member_id}, #{member_pw}, #{member_name}, #{member_tel}, #{member_birth} ,#{member_email} , #{member_city}, #{member_adress} , '1', #{member_character});
 	</insert>
 	
 	
-	<insert id="board_add" parameterType ="db_board_dto.DTO" >
+	<insert id="board_add" parameterType ="com.joalib.DTO.BoardDTO" >
 		INSERT INTO joalib.board(board_title, board_text, board_date, member_id, board_hit) VALUES ( #{board_title}, #{board_text}, #{board_date},#{member_id},0);
 	</insert>
 	
@@ -20,7 +20,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		select member_pw from joalib.memberinfo where member_id = #{id};
 	</select>
 	
-	<select id="board_all" resultType="db_board_dto.DTO">
+	<select id="board_all" resultType="com.joalib.DTO.BoardDTO">
 		SELECT * FROM joalib.board order by board_no desc;
 	</select>
 	
@@ -28,15 +28,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT count(*) as board_count FROM joalib.board;
 	</select>
 	
-	<select id="read_details" resultType="db_board_dto.DTO" parameterType="db_board_dto.DTO">
+	<select id="read_details" resultType="com.joalib.DTO.BoardDTO" parameterType="com.joalib.DTO.BoardDTO">
 		select * from joalib.board where board_no= #{board_num};
 	</select>
 	
-	<update id="board_update" parameterType="db_board_dto.DTO">
+	<update id="board_update" parameterType="com.joalib.DTO.BoardDTO">
 		UPDATE joalib.board SET board_title =#{board_title}, board_text =#{board_text} WHERE board_no =#{board_no};
 	</update>
 	
-	<update id="board_hitUp" parameterType="db_board_dto.DTO">
+	<update id="board_hitUp" parameterType="com.joalib.DTO.BoardDTO">
 		UPDATE joalib.board SET board_hit = (board_hit+1) WHERE board_no = #{board_num};
 	</update>
 	
@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	
-	<delete id="board_del" parameterType="db_board_dto.DTO">
+	<delete id="board_del" parameterType="com.joalib.DTO.BoardDTO">
 		delete from joalib.board where board_no = #{board_num};
 	</delete>
 		

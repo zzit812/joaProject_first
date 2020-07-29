@@ -34,7 +34,7 @@ public class DAO {
 	
 	public DAO(){	
 		try {
-			Reader reader = Resources.getResourceAsReader("db_table_dao/mybatis_test-config.xml");		//xml 연결
+			Reader reader = Resources.getResourceAsReader("com/joalib/DAO/mybatis_test-config.xml");		//xml 연결
 			sqlfactory = new SqlSessionFactoryBuilder().build(reader);	//batis를 증명하는 아이.				
 		} catch (IOException e) {
 			e.printStackTrace();		
