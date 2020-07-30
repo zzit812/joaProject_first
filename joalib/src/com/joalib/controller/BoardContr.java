@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.joalib.DTO.ActionForward;
 
-public class BoardContr extends javax.servlet.http.HttpServlet
-{
+public class BoardContr extends javax.servlet.http.HttpServlet{
 	protected void doProsecc(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		

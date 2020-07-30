@@ -1,6 +1,6 @@
 package com.joalib.DTO;
 
-public class member_DTO {
+public class memberinfoDTO {
 	
 	String member_id;
 	String member_pw;
