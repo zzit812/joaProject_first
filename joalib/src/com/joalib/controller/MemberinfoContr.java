@@ -12,6 +12,8 @@ import javax.servlet.http.HttpSession;
 import com.joalib.DTO.ActionForward;
 import com.joalib.member.action.*;
 
+import mvcpr.board.Action.BoardModifyFormAction;
+
 @WebServlet("*.mem")
 public class MemberinfoContr extends javax.servlet.http.HttpServlet{
 	
@@ -45,6 +47,8 @@ public class MemberinfoContr extends javax.servlet.http.HttpServlet{
 			forward.setRedirect(true);
 			forward.setPath("userLogin.html");
 		}
+		
+		
 		
 	
 	

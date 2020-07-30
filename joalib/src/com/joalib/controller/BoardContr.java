@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletResponse;
 import com.joalib.DTO.ActionForward;
 import com.joalib.board.action.dbAction;
 
+
 import com.joalib.board.action.BoardWriteProAction;
 import com.joalib.board.action.BoardDetailAction;
+import com.joalib.board.action.BoardModifyFormAction;
+import com.joalib.board.action.BoardModifyProAction;
+
 
 
 @WebServlet("*.bo")
@@ -40,7 +44,22 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 			forward.setPath("/board.jsp");
 		}else if(command.equals("/boardReadPage.bo")){
 			action = new BoardDetailAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/boardModifyForm.bo")){
 			
+			action = new BoardModifyFormAction();
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/boardModifyPro.bo")){
+			action = new BoardModifyProAction();
+	
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

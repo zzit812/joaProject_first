@@ -134,15 +134,16 @@ public class DAO {
 		sqlsession.close();
 	}
 	
-	public void board_update(BoardDTO dto) {
-		System.out.println("1");
+	public void board_update(BoardDTO article) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		System.out.println("2");
-		sqlsession.selectOne("board_update", dto);
-		System.out.println("3");
+		sqlsession.selectOne("board_update", article);
 		sqlsession.commit();
 		sqlsession.close();
+	
+		
 	}
+
+
 
 
 	

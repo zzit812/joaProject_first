@@ -130,7 +130,7 @@
 					<input type="button" value = "목록" onClick="location.href='board.jsp?sitePage=<%= sitePage%>'"/>
 					<%	
 						if ( member_id != null && member_id.equals(article.getMember_id())) { %>
-							<input type='button'  value = '수정' onClick="location.href='board_update_page.jsp'"/>
+							<input type='button'  value = '수정' onClick="location.href='boardModifyForm.bo?board_num=<%=article.getBoard_no()%>'"/>
 							<input type='button'  value = '삭제' onClick="location.href='board_delete.jsp'"/>
 					<% }%>							
 					</div>		   

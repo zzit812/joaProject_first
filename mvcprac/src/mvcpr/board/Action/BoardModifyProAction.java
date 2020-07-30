@@ -14,6 +14,7 @@ public class BoardModifyProAction implements Action {
 		int board_num=0;
 		ActionForward forward = null;
 		boolean isModifySuccess = false;
+		
 		board_num=Integer.parseInt(request.getParameter("BOARD_NUM"));
 		if(  board_num == 0)
 			board_num = 1;

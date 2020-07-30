@@ -8,6 +8,8 @@ import mvcpr.board.DTO.Postexam;
 
 public class BoardModifyFormAction implements Action {
 	
+	
+	@Override
 	 public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception{
 		 
 		 	ActionForward forward = new ActionForward();
@@ -17,6 +19,7 @@ public class BoardModifyFormAction implements Action {
 		   	Postexam article =boardDetailService.getArticle(board_num);
 		   	request.setAttribute("article", article);
 	   		forward.setPath("/qna_board_modify.jsp");
+	   		
 	   		return forward;
 	   		
 	 }

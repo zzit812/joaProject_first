@@ -144,18 +144,15 @@
 		</div>
 		
         <div id="cont_size">
-        		<%
-        			DAO dao = new DAO();
-        				DAO.getinstance();	
-        				BoardDTO dto = dao.read_details();
-        		%>
+
             <h1>자유게시판</h1>
             <div id="cont_1_size">				
 				<div id="write_box">                        
-				<form action='board_update.jsp'>
-					<input type="hidden" name="board_no" value=<%out.print(dto.getBoard_no());%>>
-					<input type="text" name="board_title" value=<%out.print(dto.getBoard_title());%> />
-					<textarea id="board_text" name="board_write"><%out.print(dto.getBoard_text());%></textarea>
+				<form action='boardModifyPro.bo'>
+				<%BoardDTO article = (BoardDTO)request.getAttribute("article"); %>
+					<input type="hidden" name="board_no" value=<%out.print(article.getBoard_no());%>>
+					<input type="text" name="board_title" value=<%out.print(article.getBoard_title());%> />
+					<textarea id="board_text" name="board_write"><%out.print(article.getBoard_text());%></textarea>
 					<input class="button" type="submit" value = "등록" />
 				</form>
             	</div>

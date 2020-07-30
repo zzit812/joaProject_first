@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	
 	<update id="board_update" parameterType="com.joalib.DTO.BoardDTO">
-		UPDATE joalib.board SET board_title =#{board_title}, board_text =#{board_text} WHERE board_no =#{board_no};
+		UPDATE joalib.board SET board_title =#{board_title}, board_text =#{board_text} WHERE board_no =#{board_num};
 	</update>
 	
 	<update id="board_hitUp" parameterType="com.joalib.DTO.BoardDTO">
