@@ -67,13 +67,13 @@
 							<li><a href="">중고도서 나눔</a></li>
 						</ul>
 					</li>
-					<li><a href="login_check.jsp">나의서재</a>
+					<li><a href="mypage_main.jsp">나의서재</a>
 						<ul>
-							<li><a href="login_check.jsp">나의 서재</a></li>
-							<li><a href="login_check.jsp">서비스 이용 내역</a></li>
-							<li><a href="login_check.jsp">내가 쓴 글</a></li>
-							<li><a href="login_check.jsp">포인트</a></li>
-							<li><a href="login_check.jsp">정보 수정/ 탈퇴</a></li>
+							<li><a href="mypage_main.jsp">나의 서재</a></li>
+							<li><a href="">서비스 이용 내역</a></li>
+							<li><a href="">내가 쓴 글</a></li>
+							<li><a href="">포인트</a></li>
+							<li><a href="">정보 수정/ 탈퇴</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -344,64 +344,57 @@
 								  	}
 						%>				  	
 		  			<%
-				  			  				// 페이지당 게시물을 담는다.
-				  			  					  			// array 에 게시물을 담고, 배열에는 페이지를 담았다.	
-				  			  					  			
-				  			  					  			int count = 0; 
-				  			  					  			List<BoardDTO> list = dao.select_board_all();
-				  			  					  			ArrayList<BoardDTO> array;							//array 하나당 하나의 페이지 > ex) array(0).get > = 페이지의 첫번째 게시물
-				  			  					  			ArrayList[] pageList = new ArrayList[totalPage];//전체 페이지를 관리하는 배열 > ex) pageList(0) = 첫번째 페이지
-				  			  					  			
-				  			  					  			   //게시물총수 한페이지당게시물수
-				  			  					  			if(totalCount % countList == 0 ){
-				  			  					  				//나눈값이 0이다.
-				  			  					  				for(int x = 0; x < totalPage; x++ ){
-				  			  					  					              //페이지 갯수
-				  			  					  					array = new ArrayList<BoardDTO>();
-				  			  					  					for(int y = 0 ; y < countList; y++){		  						
-				  			  				  					array.add(list.get(count));
-				  			  				  					//count 0에서 시작함. countList가 10이니까, 그만큼
-				  			  				  					count++;
-				  			  				  					//이게 계속올라가면서 페이지갯수까지 오르는거임
-				  			  					  					}
-				  			  					  					pageList[x] = array;
-				  			  					  					//x가 페이지갯수만큼 돔. array에 게시글 10개를 담아놈.
-				  			  					  					
-				  			  					  				}
-				  			  					  			}else{
-				  			  					  				//나눈값이 0이 아니다.
-				  			  					  				for(int x = 0; x < (totalPage-1); x++ ){
-				  			  					  					
-				  			  					  					
-				  			  					  					array = new ArrayList<BoardDTO>();
-				  			  					  					//마지막 페이지 전까지 어레이에 담는다.		  					
-				  			  					  					for(int y = 0 ; y < countList; y++){		  						
-				  			  				  					array.add(list.get(count));
-				  			  				  					count++;
-				  			  					  					}
-				  			  					  					pageList[x] = array;
-				  			  					  				}		  	
-				  			  					  				
-				  			  					  				array = new ArrayList<BoardDTO>();
-				  			  					  				for(int lastCount = count ; lastCount < totalCount ; lastCount++){		  					
-				  			  					  					array.add(list.get(lastCount));		  					
-				  			  					  				}
-				  			  					  				pageList[totalPage-1] = array;
-				  			  					  			}
-				  			  			%>
-		
+	  				// 페이지당 게시물을 담는다.
+	  					  			// array 에 게시물을 담고, 배열에는 페이지를 담았다.	
+	  					  			
+	  					  			int count = 0; 
+	  					  			List<BoardDTO> list = dao.select_board_all();
+	  					  			ArrayList<BoardDTO> array;							//array 하나당 하나의 페이지 > ex) array(0).get > = 페이지의 첫번째 게시물
+	  					  			ArrayList[] pageList = new ArrayList[totalPage];	//전체 페이지를 관리하는 배열 > ex) pageList(0) = 첫번째 페이지
+	  					  			
+	  					  			   //게시물총수 한페이지당게시물수
+	  					  			if(totalCount % countList == 0 ){
+	  					  				//나눈값이 0이다.
+	  					  				for(int x = 0; x < totalPage; x++ ){
+	  					  					              //페이지 갯수
+	  					  					array = new ArrayList<BoardDTO>();
+	  					  					for(int y = 0 ; y < countList; y++){		  						
+	  				  					array.add(list.get(count));
+	  				  					//count 0에서 시작함. countList가 10이니까, 그만큼
+	  				  					count++;
+	  				  					//이게 계속올라가면서 페이지갯수까지 오르는거임
+	  					  					}
+	  					  					pageList[x] = array;
+	  					  					//x가 페이지갯수만큼 돔. array에 게시글 10개를 담아놈.
+	  					  					
+	  					  				}
+	  					  			}else{
+	  					  				//나눈값이 0이 아니다.
+	  					  				for(int x = 0; x < (totalPage-1); x++ ){
+	  					  					
+	  					  					
+	  					  					array = new ArrayList<BoardDTO>();
+	  					  					//마지막 페이지 전까지 어레이에 담는다.		  					
+	  					  					for(int y = 0 ; y < countList; y++){		  						
+	  				  					array.add(list.get(count));
+	  				  					count++;
+	  					  					}
+	  					  					pageList[x] = array;
+	  					  				}		  	
+	  					  				
+	  					  				array = new ArrayList<BoardDTO>();
+	  					  				for(int lastCount = count ; lastCount < totalCount ; lastCount++){		  					
+	  					  					array.add(list.get(lastCount));		  					
+	  					  				}
+	  					  				pageList[totalPage-1] = array;
+	  					  			}
+	  			%>
+			<!-- 페이징 -->
 			<div class="pagination">
 				<a href="#" class="prev"><i class="fa fa-angle-double-left"></i> Prev</a>
 				<%		
 			  	for (int iCount = startPage; iCount <= endPage; iCount++) {
-	
-			  	    //if (iCount == sitePage) {
-			  	       out.print(" <a href='board.jsp?sitePage="+iCount+"' class='page-number'> "+iCount+ "</a>");
-			  	       
-			  	       //<a href ='board.jsp?sitePage= 2' ></a>
-			  	   // } else {
-			  	   //     out.print(" <a href='board.jsp?sitePage=" + iCount + " class='page-number'>" +iCount+"</a>");
-			  	   // }		
+			  	       out.print(" <a href='board.jsp?sitePage="+iCount+"' class='page-number'> "+iCount+ "</a>");	
 			  	}
 		  		%>
 		  		<a href="#" class="next">Next <i class="fa fa-angle-double-right"></i></i></a>

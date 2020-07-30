@@ -6,11 +6,29 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	<mapper namespace="SqlData">
 	
+<<<<<<< HEAD
 	<insert id="member_insert" parameterType = "com.joalib.DTO.member_DTO" >
+=======
+	<insert id="memberInsert" parameterType = "com.joalib.DTO.memberinfoDTO" >
+>>>>>>> refs/remotes/origin/master
 		INSERT INTO joalib.memberinfo VALUES ( #{member_id}, #{member_pw}, #{member_name}, #{member_tel}, #{member_birth} ,#{member_email} , #{member_city}, #{member_adress} , '1', #{member_character});
 	</insert>
 	
+	<select id="memberLoginCheck" parameterType = "String" resultType="String">
+		select member_pw from joalib.memberinfo where member_id = #{checkID};
+	</select>
 	
+<<<<<<< HEAD
+=======
+	
+	
+	
+	
+	
+	
+	
+	
+>>>>>>> refs/remotes/origin/master
 	<insert id="board_add" parameterType ="com.joalib.DTO.BoardDTO" >
 		INSERT INTO joalib.board(board_title, board_text, board_date, member_id, board_hit) VALUES ( #{board_title}, #{board_text}, #{board_date},#{member_id},0);
 	</insert>

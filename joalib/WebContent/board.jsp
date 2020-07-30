@@ -39,7 +39,7 @@
 									if ( member_id != null) {
 										out.print("<a href='logout.jsp'>로그아웃</a>");
 									}else{
-										out.print("<a href='join_1.html'>회원가입</a></li> | <li><a href='login_1.html'>로그인</a>");
+										out.print("<a href='userJoinRule.html'>회원가입</a></li> | <li><a href='userLogin.html'>로그인</a>");
 									}
 					%>
 					</li> | <li><a>포인트충전</a></li>
@@ -80,13 +80,13 @@
 							<li><a href="">중고도서 나눔</a></li>
 						</ul>
 					</li>
-					<li><a href="login_check.jsp">나의서재</a>
+					<li><a href="mypage_main.jsp">나의서재</a>
 						<ul>
-							<li><a href="login_check.jsp">나의 서재</a></li>
-							<li><a href="login_check.jsp">서비스 이용 내역</a></li>
-							<li><a href="login_check.jsp">내가 쓴 글</a></li>
-							<li><a href="login_check.jsp">포인트</a></li>
-							<li><a href="login_check.jsp">정보 수정/ 탈퇴</a></li>
+							<li><a href="mypage_main.jsp">나의 서재</a></li>
+							<li><a href="">서비스 이용 내역</a></li>
+							<li><a href="">내가 쓴 글</a></li>
+							<li><a href="">포인트</a></li>
+							<li><a href="">정보 수정/ 탈퇴</a></li>
 						</ul>
 					</li>
 				</ul>

@@ -17,7 +17,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.joalib.DTO.BoardDTO;
-import com.joalib.DTO.member_DTO;
+import com.joalib.DTO.memberinfoDTO;
 
 import com.joalib.DTO.BoardDTO;
 
@@ -57,7 +57,7 @@ public class DAO {
 	
 	////////////////////////////////////////////////////////////////
 	//join
-	public void member_insert (member_DTO dto) {
+	public void member_insert (memberinfoDTO dto) {
 		SqlSession sqlsession = sqlfactory.openSession();		
 		sqlsession.insert("member_insert", dto);
 		//System.out.println(dto.getMember_id());
