@@ -128,7 +128,7 @@
 		  		</ul>
 		  		<div>
 			  		<%
-			  			DAO dao = new DAO(); 	
+			  			DAO dao = new DAO();
 			  			  		
 			  				  	int sitePage =1 ;	//현재페이지 //초기 페이지 = 1
 			  				  	if(request.getParameter("sitePage") != null){
