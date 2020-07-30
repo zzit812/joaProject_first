@@ -204,29 +204,33 @@
 				  			  					  				pageList[totalPage-1] = array;
 				  			  					  			}
 				  			  			%>
+		  		
 		  			<%
-		  				// 선택한 페이지의 게시물을 보여준다.  	
-		  					  			for(int i = 0 ; i < pageList[sitePage-1].size() ; i++){
-		  					  				ArrayList<BoardDTO> dtoArray = pageList[sitePage-1];		  				
-		  					  				out.print("<ul><li>");
-		  					  				out.print(dtoArray.get(i).getBoard_no());
-		  					  	
-		  					  				out.print("</li><li><a href='board_click_hitUp.jsp?board_num=" + dtoArray.get(i).getBoard_no() + "'>");
-		  					  				//ex > http://localhost:8080/board/board_view.jsp? getBoard_no = '1000';
-		  					  				//누르면 'board_view.jsp' 창으로 가지고 있는 게시글번호와 함께 넘어간다.			  						
-		  					  				out.print(dtoArray.get(i).getBoard_title());
-		  					  				out.print("</a></li><li>");
-		  					  				out.print(dtoArray.get(i).getMember_id());
-		  					  				out.print("</li><li>");
-		  					  				out.print(dtoArray.get(i).getBoard_date());
-		  					  				out.print("</li><li>");
-		  					  				out.print(dtoArray.get(i).getBoard_hit());	//조회수
-		  					  				out.print("</li></ul>");
-		  					  			}		  			
-		  					  			//페이징 참고 사이트 : https://okky.kr/article/282819 ;
+		  			for(int i = 0 ; i < pageList[sitePage-1].size() ; i++){
+			  				ArrayList<BoardDTO> dtoArray = pageList[sitePage-1];
 		  			%>
+		  			<ul>
+		  			<li>
+		  			<%=dtoArray.get(i).getBoard_no()%>
+		  
+		  			</li>
+		  			<li>
+		  			<a href='board_click_hitUp.jsp?board_num= <%=dtoArray.get(i).getBoard_no() %>'><%=dtoArray.get(i).getBoard_title() %></a>
+		  			</li>
+		  			<li>
+		  			<%=dtoArray.get(i).getMember_id() %>
+		  			</li>
+		  			<li>
+		  			<%=dtoArray.get(i).getBoard_date() %>
+		  			</li>
+		  			<li>
+		  			<%=dtoArray.get(i).getBoard_hit()%>
+		  			</li>
+		  			</ul>
+		  			<%} %>
+		  			
 
-		  		</div>  	
+		  		</div>
 		  		
 		  		
 		  	</div>

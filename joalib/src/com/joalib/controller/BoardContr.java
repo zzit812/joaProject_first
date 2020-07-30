@@ -35,7 +35,8 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 			}
 			
 		}else if(command.equals("/boardList.bo")) {
-			System.out.println("Èì³Ä·ø");
+			forward=new ActionForward();
+			forward.setPath("/board.jsp");
 		}
 		
 		

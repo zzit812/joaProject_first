@@ -25,6 +25,9 @@ public class BoardWriteProAction implements dbAction {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		Date date= new Date();
+		SimpleDateFormat simpleDate = new SimpleDateFormat("yyyy-MM-dd");
+		String board_date = simpleDate.format(date);
 		
 		ActionForward forward=null;
 		BoardDTO boardBean = null;
@@ -38,7 +41,7 @@ public class BoardWriteProAction implements dbAction {
 		boardBean.setBoard_title(request.getParameter("board_title"));
 		boardBean.setBoard_text(request.getParameter("board_write"));
 		boardBean.setMember_id(request.getParameter("member_id"));
-	
+		boardBean.setBoard_date(board_date);
 		
 		
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
