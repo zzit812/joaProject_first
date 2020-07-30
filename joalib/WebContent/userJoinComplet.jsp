@@ -1,75 +1,31 @@
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-	<title>조아도서관</title>
+	<title>Document</title>
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script src="js/join_1.js"></script>
+	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+	<!-- <script src="js/join_2.js"></script> -->
 	
 	<link rel="stylesheet" type="text/css" href="css/lib_top.css">
-	<!-- <link rel="stylesheet" type="text/css" href="css/lib_join_1.css"> -->
-	<!-- <link rel="stylesheet" type="text/css" href="css/lib_join.css"> -->
+	<link rel="stylesheet" type="text/css" href="css/lib_join_3.css">
+	<link rel="stylesheet" type="text/css" href="css/lib_join.css">
 	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-
-	<style type="text/css">
-		#info > div > p {
-			display: inline-block;
-		    width: 130px;		
-		    margin: 0;
-		    font-size: 25px;
-		}
-		#info > div {
-			margin: 15px 10px;
-		}
-		#info > div > input {
-			height: 25px;
-			width: 220px;
-		}
-		#info {
-			float: left;
-   	 		padding: 20px;
-		}
-		input[name=loginBtn]{
-			width: 121px;
-		    height: 80px;
-		    margin: 46px 0 0 20px;
-		    border-radius: 30px;
-		    border: 0px;
-		    color: white;
-		    font-size: 25px;
-		    background-color: #5d2f88;
-		    /*box-shadow:10px 10px 10px rgba(0, 0, 0, 10%);*/
-		}
-		form{
-			width: 600px;
-		    padding: 60px;
-		    height: 180px;
-		    border-radius: 50px;
-		    margin: 200px auto 20px auto;
-		    box-shadow: 11px 15px 23px rgba(0, 0, 0, 10%);
-		}
-		#joinMenu {
-			clear: both;
-    		margin: 60px 0 0 0;
-    		opacity: 80%;
-		    font-size: 15px;
-		    font-weight: 200;
-		}
-		#joinMenu > a {
-			margin: 0 50px 0 0;
-		}
-		#joinMenu > a > img {
-			width: 2.5%;
-			margin-right: 5px;
-		}
-
-	</style>
 	<script type="text/javascript">
-		
+		$(function(){
+			$('input[name=loginGo]').on('click',function(){
+				location.href='login_1.html';
+			});
+			$('input[name=homeGo]').on('click',function(){
+				location.href='';
+			});
+		});
 	</script>
+
 </head>
 
  <body>
+ 	 <% request.setCharacterEncoding("UTF-8");%>
 	 <header>
 		 <div id="top_size">
 		 	<!--로고-->
@@ -77,7 +33,7 @@
 			<!--탑네비-->
 			<nav>
 				<ul id="top_nav">
-					<li><a>HOME</a></li> | <li><a href='join_1.html'>회원가입</a></li> | <li><a href='login_1.html'>로그인</a></li> | <li><a>포인트충전</a></li>
+					<li><a>HOME</a></li> | <li><a href='userJoinRule.html'>회원가입</a></li> | <li><a href='userLogin.html'>로그인</a></li> | <li><a>포인트충전</a></li>
 				</ul>
 			</nav>
 			<div class="clearF"></div>
@@ -119,13 +75,13 @@
 							<li><a href="">중고도서 나눔</a></li>
 						</ul>
 					</li>
-					<li><a href="login_check.jsp">나의서재</a>
+					<li><a href="mypage_main.jsp">나의서재</a>
 						<ul>
-							<li><a href="login_check.jsp">나의 서재</a></li>
-							<li><a href="login_check.jsp">서비스 이용 내역</a></li>
-							<li><a href="login_check.jsp">내가 쓴 글</a></li>
-							<li><a href="login_check.jsp">포인트</a></li>
-							<li><a href="login_check.jsp">정보 수정/ 탈퇴</a></li>
+							<li><a href="mypage_main.jsp">나의 서재</a></li>
+							<li><a href="">서비스 이용 내역</a></li>
+							<li><a href="">내가 쓴 글</a></li>
+							<li><a href="">포인트</a></li>
+							<li><a href="">정보 수정/ 탈퇴</a></li>
 						</ul>
 					</li>
 				</ul>
@@ -133,18 +89,30 @@
 			</nav>
 		 </div>
 		 <script src="js/lib_top.js"></script>
-		 <div id="title"><p>로그인</p></div><!-- (타이틀에이미지넣을거에용) -->
+		 <div id="title"><p>회원가입</p></div><!-- (타이틀에이미지넣을거에용) -->
 	 </header>
 
 	 <section id="side_size"><!-- id="side_size" 이거 크기 설정한거니깐 삭제하면 안돼요 -->
-	 	<form method="post" action="login_db.jsp">
-	 		<div id="info">
-	 			<div><p>아이디</p><input type="text" name="member_id"></div>
-	 			<div><p>비밀번호</p><input type="password" name="member_pw"></div>
- 			</div>
- 			<input type="submit" name="loginBtn" value="LOGIN">
- 			<div id="joinMenu"><a href="join_1.html"><img src="img/personIcon.png">회원이 아니신가요?</a></div>
- 		</form>
+	 	<div id="sidemenu_size" >
+	 		<div id="sidemenuBlook">
+	 			<div>
+			 		<h3>약관 동의</h3>
+			 		<h3>회원 정보 입력</h3>
+			 		<h3>캐릭터</h3>
+			 		<h3>가입 완료!</h3>
+		 		</div>
+	 		</div>
+		</div>
+		<div id="cont_size">
+			<% String member_name = (String) session.getAttribute("member_name"); %>
+			<h1><p id="userName"><%= member_name %>님</p>
+		 	<br>환영합니다!</h1>
+		 	<img src="img/character/character1.png"/>
+		 		<form>
+		 			<input type="button" name="loginGo" value="LOGIN">
+		 			<a href="home.jsp"><input type="button" name="homeGo" value="HOME"></a>
+		 		</form>
+		</div>
 	 </section>
 
 	 <footer>
