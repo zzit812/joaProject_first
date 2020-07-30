@@ -117,24 +117,19 @@
 		<div id="cont_size">
 		    <h1>자유게시판</h1>
 		    <div id="cont_1_size">
-			<%
-				DAO dao = new DAO();
-				DAO.getinstance();			
-				
-				BoardDTO dto = dao.read_details();	//게시물 dto
-			%>
-			
+
+			<%BoardDTO article = (BoardDTO)request.getAttribute("article"); %>
 				<div id="write_box">                        
-				    <h2><%out.print(dto.getBoard_title());%></h2>
+				    <h2><%out.print(article.getBoard_title());%></h2>
 					<div id="member_character" ><img  src="img/character/character1.png"></div>
-					<p><%out.print(dto.getMember_id());%></p>
-					<p><%out.print(dto.getBoard_date());%></p>                    
-					<div id="board_text"><%out.print(dto.getBoard_text());%></div>            
+					<p><%out.print(article.getMember_id());%></p>
+					<p><%out.print(article.getBoard_date());%></p>                    
+					<div id="board_text"><%out.print(article.getBoard_text());%></div>            
 					<div class="button">	<!-- 버튼 -->
 					<% int sitePage = (Integer)session.getAttribute("boardPageNum"); %>
 					<input type="button" value = "목록" onClick="location.href='board.jsp?sitePage=<%= sitePage%>'"/>
 					<%	
-						if ( member_id != null && member_id.equals(dto.getMember_id())) { %>
+						if ( member_id != null && member_id.equals(article.getMember_id())) { %>
 							<input type='button'  value = '수정' onClick="location.href='board_update_page.jsp'"/>
 							<input type='button'  value = '삭제' onClick="location.href='board_delete.jsp'"/>
 					<% }%>							

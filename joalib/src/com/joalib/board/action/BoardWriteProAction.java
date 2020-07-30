@@ -31,7 +31,7 @@ public class BoardWriteProAction implements dbAction {
 		
 		ActionForward forward=null;
 		BoardDTO boardBean = null;
-		String realFolder="";
+		
 		ServletContext context = request.getServletContext();
 		
 		boardBean = new BoardDTO();
@@ -49,6 +49,7 @@ public class BoardWriteProAction implements dbAction {
 		System.out.println(isWriteSuccess);
 		
 		if(!isWriteSuccess){
+			
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

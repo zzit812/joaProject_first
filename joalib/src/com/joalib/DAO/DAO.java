@@ -98,19 +98,18 @@ public class DAO {
 		return total;
 	}
 	
-	public void hitUp() {		//조회수 증가
+	public void hitUp(int board_no) {		//조회수 증가
 		SqlSession sqlsession = sqlfactory.openSession();
-		BoardDTO dto = new BoardDTO();
-		sqlsession.update("board_hitUp", dto);
+		sqlsession.update("board_hitUp", board_no);
 		System.out.println(" *SQL실행완료* ");
 		sqlsession.commit();
 		sqlsession.close();
 		
 	}	
-	public BoardDTO read_details() {
+	public BoardDTO read_details(int board_no) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		BoardDTO dto = new BoardDTO();
-		dto = sqlsession.selectOne("read_details", dto);
+		dto = sqlsession.selectOne("read_details", board_no);
 		sqlsession.commit();
 		sqlsession.close();
 		return dto;		
@@ -124,46 +123,7 @@ public class DAO {
 		return 1;
 		//수정중...디비에 에드가 되던 안되던 트루임;
 	}
-	
-//	public int insertArticle(BoardDTO article){
-//		PreparedStatement pstmt = null;
-//		ResultSet rs = null;
-//		int num =0;
-//		String sql="";
-//		int insertCount=0;
-//
-//		try{
-//			pstmt=con.prepareStatement("select max(board_no) from board");
-//			rs = pstmt.executeQuery();
-//
-//			if(rs.next())
-//				num =rs.getInt(1)+1;
-//			
-//			
-//			else
-//				num=1;
-//
-//			sql="insert into board (board_no,board_title,board_text,board_date,member_id,board_hit)"
-//					+ "values(default,?,?,now(),?,?)";
-//			
-//			
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setString(1, article.getBoard_title());
-//			pstmt.setString(2, article.getBoard_text());
-//			pstmt.setString(3, article.getMember_id());
-//			pstmt.setInt(4, 0);
-//
-//			insertCount=pstmt.executeUpdate();
-//
-//		}catch(Exception ex){
-//		}finally{
-//			close(rs);
-//			close(pstmt);
-//		}
-//
-//		return insertCount;
-//
-//	}
+
 	
 	
 	public void board_del() {
@@ -183,6 +143,8 @@ public class DAO {
 		sqlsession.commit();
 		sqlsession.close();
 	}
+
+
 	
 	
 	

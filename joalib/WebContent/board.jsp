@@ -212,10 +212,9 @@
 		  			<ul>
 		  			<li>
 		  			<%=dtoArray.get(i).getBoard_no()%>
-		  
 		  			</li>
 		  			<li>
-		  			<a href='board_click_hitUp.jsp?board_num= <%=dtoArray.get(i).getBoard_no() %>'><%=dtoArray.get(i).getBoard_title() %></a>
+		  			<a href='boardReadPage.bo?board_num=<%=dtoArray.get(i).getBoard_no() %>'><%=dtoArray.get(i).getBoard_title() %></a>
 		  			</li>
 		  			<li>
 		  			<%=dtoArray.get(i).getMember_id() %>

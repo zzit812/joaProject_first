@@ -11,6 +11,7 @@ import com.joalib.DTO.ActionForward;
 import com.joalib.board.action.dbAction;
 
 import com.joalib.board.action.BoardWriteProAction;
+import com.joalib.board.action.BoardDetailAction;
 
 
 @WebServlet("*.bo")
@@ -37,6 +38,14 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 		}else if(command.equals("/boardList.bo")) {
 			forward=new ActionForward();
 			forward.setPath("/board.jsp");
+		}else if(command.equals("/boardReadPage.bo")){
+			action = new BoardDetailAction();
+			
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
 		}
 		
 		
