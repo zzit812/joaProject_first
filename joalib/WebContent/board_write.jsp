@@ -82,11 +82,11 @@
 			<!--탑메뉴-->
 			<nav id="topMenuBorder">
 				<ul id="top_menu">
-<<<<<<< HEAD
+
 					<li><a href="book_search.jsp">자료검색</a>
-=======
+
 					<li><a href="book_search.html">자료검색</a>
->>>>>>> branch 'master' of https://github.com/zzit812/joaProject_first.git
+
 						<ul class ="sub_menu">
 							<li><a href="book_search.html">도서 검색</a></li>
 							<li><a href="">분야별 도서 조회</a></li>
@@ -156,13 +156,19 @@
             <h1>자유게시판</h1>
             <div id="cont_1_size">				
 				<div id="write_box">                        
-				<form action='board_writeDB.jsp'>
+				<form action='boardWritePro.bo' name='gg'><!-- 여기 수정ㅇㅇㅇㅇㅇㅇㅇㅇㅇ -->
 					<input type="text" name="board_title" placeholder='제목을 입력하세요.' />
 					<textarea id="board_text" name="board_write" placeholder='내용을 입력하세요.' ></textarea>
+					<input type="hidden" name="member_id" value='<%=member_id %>'/>
+					
+					
+					
 					<input class="button" type="submit" value = "등록" />
+					
+					
 				</form>
 				
-				<script type="text/javascript">\
+				<script type="text/javascript">
 				
 				</script>
             	</div>                   

@@ -119,9 +119,9 @@
 		  	<h1>자유게시판</h1>
 		  	<div id="board_con">
 		
-		  	<form>		  	
-		  		<input type="button" value="글쓰기" id="write_button" onclick="newPostBtn()" />
-		  	</form>
+	  		<form>
+		  		<input type="button" value="글쓰기" id="write_button" onclick="newPostBtn()"/>
+			</form>	
 		  	
 		  		<ul>
 		  			<li>게시번호</li><li>제목</li><li>회원</li><li>글쓴날짜</li><li>조회수</li>
@@ -262,7 +262,7 @@
 			  	request.setCharacterEncoding("UTF-8");
 				if ( member_id != null) {
 					//로그인이 되어있음
-					out.print("location.href='board_write.jsp'");	
+					out.print("location.href='board_write.jsp'");
 				}else{
 					//로그인이 안됨
 					out.print("alert('로그인 후 이용가능합니다.');location.href='login_1.html'");

@@ -1,5 +1,10 @@
 package com.joalib.board.action;
 
-public interface dbAction  {
-	public void start();	
+import javax.servlet.http.*;
+
+import com.joalib.DTO.ActionForward;
+
+public interface dbAction {
+	public ActionForward execute(HttpServletRequest request,HttpServletResponse response) throws Exception;
 }
+

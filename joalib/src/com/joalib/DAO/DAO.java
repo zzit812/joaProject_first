@@ -1,7 +1,12 @@
 package com.joalib.DAO;
 
+import static com.joalib.board.CONN.JdbcUt.close;
+
 import java.io.IOException;
 import java.io.Reader;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +19,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.joalib.DTO.BoardDTO;
 import com.joalib.DTO.member_DTO;
 
+import com.joalib.DTO.BoardDTO;
+
 public class DAO {
+	Connection con;  //보현,MVC2패턴 하면서 추가
 	
 	SqlSessionFactory sqlfactory;
 	
@@ -30,11 +38,17 @@ public class DAO {
 			}
 		}
 		return instance;
-	}	
+	}
+	
+	public void setConnection(Connection con){
+		this.con = con;
+	}//보현,MVC2패턴 하면서 추가
+	
+	
 	
 	public DAO(){	
 		try {
-			Reader reader = Resources.getResourceAsReader("db_table_dao/mybatis_test-config.xml");		//xml 연결
+			Reader reader = Resources.getResourceAsReader("com/joalib/DAO/mybatis_test-config.xml");		//xml 연결
 			sqlfactory = new SqlSessionFactoryBuilder().build(reader);	//batis를 증명하는 아이.				
 		} catch (IOException e) {
 			e.printStackTrace();		
@@ -101,12 +115,56 @@ public class DAO {
 		sqlsession.close();
 		return dto;		
 	}
-	public void myinsert(BoardDTO dto) {
+	public int myinsert(BoardDTO dto) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		dto = sqlsession.selectOne("board_add", dto);
 		sqlsession.commit();
 		sqlsession.close();
+		
+		return 1;
+		//수정중...디비에 에드가 되던 안되던 트루임;
 	}
+	
+//	public int insertArticle(BoardDTO article){
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//		int num =0;
+//		String sql="";
+//		int insertCount=0;
+//
+//		try{
+//			pstmt=con.prepareStatement("select max(board_no) from board");
+//			rs = pstmt.executeQuery();
+//
+//			if(rs.next())
+//				num =rs.getInt(1)+1;
+//			
+//			
+//			else
+//				num=1;
+//
+//			sql="insert into board (board_no,board_title,board_text,board_date,member_id,board_hit)"
+//					+ "values(default,?,?,now(),?,?)";
+//			
+//			
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, article.getBoard_title());
+//			pstmt.setString(2, article.getBoard_text());
+//			pstmt.setString(3, article.getMember_id());
+//			pstmt.setInt(4, 0);
+//
+//			insertCount=pstmt.executeUpdate();
+//
+//		}catch(Exception ex){
+//		}finally{
+//			close(rs);
+//			close(pstmt);
+//		}
+//
+//		return insertCount;
+//
+//	}
+	
 	
 	public void board_del() {
 		SqlSession sqlsession = sqlfactory.openSession();
