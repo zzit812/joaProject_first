@@ -131,7 +131,7 @@
 					<%	
 						if ( member_id != null && member_id.equals(article.getMember_id())) { %>
 							<input type='button'  value = '수정' onClick="location.href='boardModifyForm.bo?board_num=<%=article.getBoard_no()%>'"/>
-							<input type='button'  value = '삭제' onClick="location.href='board_delete.jsp'"/>
+							<input type='button'  value = '삭제' onClick="removeCheck()"/>
 					<% }%>							
 					</div>		   
 				</div>
@@ -146,5 +146,18 @@
 		</div>
 	 </footer><!-- Favorite -->
         </body>
+        <script type="text/javascript">
+    
+       		function removeCheck() {
+        	 	if (confirm("정말 삭제하시겠습니까??") == true){    //확인
+        	 		location.href='boardDelete.bo?board_num=<%=article.getBoard_no()%>'
+        	 	
+        	 	}else{  
+        	    	 return false;
+        	 	}
+        	}
+        </script>
         </html>
+        
+
         

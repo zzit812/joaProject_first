@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.joalib.DTO.ActionForward;
 import com.joalib.board.action.dbAction;
 
+import mvcpr.board.Action.BoardDeleteProAction;
 
 import com.joalib.board.action.BoardWriteProAction;
+import com.joalib.board.action.BoardDeleteAction;
 import com.joalib.board.action.BoardDetailAction;
 import com.joalib.board.action.BoardModifyFormAction;
 import com.joalib.board.action.BoardModifyProAction;
@@ -60,6 +62,13 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 		}else if(command.equals("/boardModifyPro.bo")){
 			action = new BoardModifyProAction();
 	
+			try{
+				forward=action.execute(request, response);
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+		}else if(command.equals("/boardDelete.bo")){
+			action = new BoardDeleteAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){

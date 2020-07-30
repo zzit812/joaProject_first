@@ -15,7 +15,6 @@ public class BoardModifyProAction implements dbAction {
 		// TODO Auto-generated method stub
 		int board_num=0;
 		ActionForward forward = null;
-		//boolean isModifySuccess = false;
 		
 		board_num=Integer.parseInt(request.getParameter("board_no"));
 		BoardDTO article= new BoardDTO();

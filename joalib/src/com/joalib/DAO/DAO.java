@@ -125,11 +125,10 @@ public class DAO {
 	}
 
 	
-	
-	public void board_del() {
+	public void board_del(int board_no) {
 		SqlSession sqlsession = sqlfactory.openSession();
 		BoardDTO board_dto = new BoardDTO();
-		sqlsession.delete("board_del", board_dto);
+		sqlsession.delete("board_del", board_no);
 		sqlsession.commit();
 		sqlsession.close();
 	}
