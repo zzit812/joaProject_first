@@ -265,7 +265,7 @@
 					out.print("location.href='board_write.jsp'");
 				}else{
 					//로그인이 안됨
-					out.print("alert('로그인 후 이용가능합니다.');location.href='login_1.html'");
+					out.print("alert('로그인 후 이용가능합니다.');location.href='userLogin.html'");
 				}
 		  		%>
 				

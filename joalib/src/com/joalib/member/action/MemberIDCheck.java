@@ -32,9 +32,10 @@ public class MemberIDCheck implements Action{
 		String checkID = request.getParameter("member_id");
 		String checkPW = request.getParameter("member_pw");
 		
-				
+		System.out.println(checkID+"/"+checkPW+"이것은 로그인창에서 입력한 아이디와 비밀번호");
 		MemberIDCheckService svc = new MemberIDCheckService();
 		String member_pw = svc.IDCheck(checkID);
+		System.out.println(member_pw);
 				
 //		if(member_pw == null) {
 //			//없는 아이디

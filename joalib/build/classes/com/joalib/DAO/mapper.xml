@@ -16,7 +16,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</insert>
 	
 	
-	<select id="memberID_Check" parameterType = "String" resultType="String">
+	<select id="memberLoginCheck" parameterType = "String" resultType="String">
 		select member_pw from joalib.memberinfo where member_id = #{id};
 	</select>
 	

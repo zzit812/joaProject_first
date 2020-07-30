@@ -82,17 +82,12 @@
 			<!--탑메뉴-->
 			<nav id="topMenuBorder">
 				<ul id="top_menu">
-<<<<<<< HEAD
 
 					<li><a href="book_search.jsp">자료검색</a>
 
-=======
->>>>>>> refs/remotes/origin/master
-					<li><a href="book_search.html">자료검색</a>
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/master
+					<li><a href="book_search.html">자료검색</a>
+
 						<ul class ="sub_menu">
 							<li><a href="book_search.html">도서 검색</a></li>
 							<li><a href="">분야별 도서 조회</a></li>

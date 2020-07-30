@@ -36,6 +36,7 @@ public class MemberinfoContr extends javax.servlet.http.HttpServlet{
 				forward=action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace(); }
+
 		}else if(command.equals("/memberLogout.mem")) {
 			HttpSession session = request.getSession();
 			session.invalidate();
