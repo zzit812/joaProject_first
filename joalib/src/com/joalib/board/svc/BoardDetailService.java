@@ -14,6 +14,7 @@ public class BoardDetailService {
 		BoardDTO article = null;
 		Connection con = getConnection();
 		DAO dao = new DAO();
+		///////////////////////////////////
 		dao.setConnection(con);
 		
 		dao.hitUp(board_no);
