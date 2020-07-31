@@ -118,22 +118,28 @@
 		    <h1>자유게시판</h1>
 		    <div id="cont_1_size">
 
-			<%BoardDTO article = (BoardDTO)request.getAttribute("article"); %>
+			<%BoardDTO article = (BoardDTO)request.getAttribute("article");%>
+			
 				<div id="write_box">                        
 				    <h2><%out.print(article.getBoard_title());%></h2>
 					<div id="member_character" ><img  src="img/character/character1.png"></div>
 					<p><%out.print(article.getMember_id());%></p>
 					<p><%out.print(article.getBoard_date());%></p>                    
-					<div id="board_text"><%out.print(article.getBoard_text());%></div>            
-					<div class="button">	<!-- 버튼 -->
-					<% int sitePage = (Integer)session.getAttribute("boardPageNum"); %>
-					<input type="button" value = "목록" onClick="location.href='board.jsp?sitePage=<%= sitePage%>'"/>
-					<%	
-						if ( member_id != null && member_id.equals(article.getMember_id())) { %>
-							<input type='button'  value = '수정' onClick="location.href='boardModifyForm.bo?board_num=<%=article.getBoard_no()%>'"/>
-							<input type='button'  value = '삭제' onClick="removeCheck()"/>
-					<% }%>							
-					</div>		   
+					<div id="board_text"><%out.print(article.getBoard_text());%></div>   
+					<form name="btns">         
+						<div class="button">	<!-- 버튼 -->
+						<% int sitePage = (Integer)session.getAttribute("boardPageNum"); %>
+						<input type="button" value = "목록" onClick="location.href='board.jsp?sitePage=<%= sitePage%>'"/>
+						<%	
+							if ( member_id != null && member_id.equals(article.getMember_id())) { 
+								request.setAttribute("article", article);
+							
+							%>
+								<input type='button'  value = '수정' onClick="location.href='boardModifyForm.bo?board_num=<%=article.getBoard_no()%>'"/>
+								<input type='button'  value = '삭제' onClick="removeCheck()"/>
+						<% }%>							
+						</div>
+					</form>		   
 				</div>
 			</div>
 			</div>

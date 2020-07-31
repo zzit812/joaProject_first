@@ -148,18 +148,15 @@
             <h1>자유게시판</h1>
             <div id="cont_1_size">				
 				<div id="write_box">                        
-				<form action='boardModifyPro.bo'>
-				<%BoardDTO article = (BoardDTO)request.getAttribute("article"); %>
-					<input type="hidden" name="board_no" value=<%out.print(article.getBoard_no());%>>
-					<input type="text" name="board_title" value=<%out.print(article.getBoard_title());%> />
-					<textarea id="board_text" name="board_write"><%out.print(article.getBoard_text());%></textarea>
+				<form action='boardModifyPro.bo' name="boardUpdatePro" method="post">
+				<%BoardDTO article = (BoardDTO) request.getAttribute("article");	%>
+					<input type="hidden" name="board_no" value="<%= article.getBoard_no() %>" />
+					<input type="text" name="board_title" value="<%= article.getBoard_title() %>" />
+					<textarea id="board_text" name="board_write" ><%= article.getBoard_text() %></textarea>
 					<input class="button" type="submit" value = "등록" />
 					<a href="javascript:history.go(-1)"><input type="button" value="뒤로"/></a>
 				</form>
-            	</div>
-            	<%
-            	
-            	%>                   
+            	</div>            	                  
             </div>
         </div>
         </section>

@@ -41,9 +41,6 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 			
-		}else if(command.equals("/boardList.bo")) {
-			forward=new ActionForward();
-			forward.setPath("/board.jsp");
 		}else if(command.equals("/boardReadPage.bo")){
 			action = new BoardDetailAction();
 			try{
@@ -51,8 +48,7 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 			}catch(Exception e){
 				e.printStackTrace();
 			}
-		}else if(command.equals("/boardModifyForm.bo")){
-			
+		}else if(command.equals("/boardModifyForm.bo")){			
 			action = new BoardModifyFormAction();
 			try{
 				forward=action.execute(request, response);
@@ -60,8 +56,7 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 				e.printStackTrace();
 			}
 		}else if(command.equals("/boardModifyPro.bo")){
-			action = new BoardModifyProAction();
-	
+			action = new BoardModifyProAction();	
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
@@ -90,7 +85,7 @@ public class BoardContr extends javax.servlet.http.HttpServlet
 						request.getRequestDispatcher(forward.getPath());
 				//RequestDispatcher라는 클래스는 현재 request에 담긴 정보를 저장하고 있다가
 				//그 다음 페이지 그 다음페이지에도 해당 정보를 볼 수 있게 계속 저장하는 것
-				//한마디로 파라미터정보 유지를 위해 사용한다
+				//한마디로 파라미터정보 유지를 위해 사용한다.
 				dispatcher.forward(request, response);
 			
 			}

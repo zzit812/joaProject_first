@@ -1,5 +1,6 @@
 package com.joalib.board.action;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -13,25 +14,35 @@ public class BoardModifyProAction implements dbAction {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		// TODO Auto-generated method stub
-		int board_num=0;
+
 		ActionForward forward = null;
+		ServletContext context = request.getServletContext();
 		
-		board_num=Integer.parseInt(request.getParameter("board_no"));
 		BoardDTO article= new BoardDTO();
-		BoardModifyProService boardModifyProService = new BoardModifyProService();
 		
-		article.setBoard_title(request.getParameter("board_title"));
-		article.setBoard_text(request.getParameter("board_write"));
+		//정보를 받아옴
+		int board_num = Integer.parseInt(request.getParameter("board_no"));
+		String board_title = request.getParameter("board_title");
+		String board_text = request.getParameter("board_write");		
+		
+		//정보를 set해줌
+		article.setBoard_title(board_title);
+		article.setBoard_text(board_text);
+		article.setBoard_no(board_num);
 		article.setBoard_num(board_num);
-		boardModifyProService.modifyArticle(article);
 		
-		System.out.println("1");
-		forward = new ActionForward();
-		System.out.println("2");
-		forward.setRedirect(true);
-		System.out.println("3");
-		forward.setPath("/boardList.bo"); 
-		
+		//svc연결
+		BoardModifyProService boardModifyProService = new BoardModifyProService();		
+		boolean s = boardModifyProService.modifyArticle(article);
+		System.out.println("act:"+s);
+		if(s) {
+			//성공
+			forward = new ActionForward();
+//			forward.setRedirect(true);
+			forward.setPath("board.jsp"); 
+		}else {
+			System.out.println("실패");
+		}			
 		
 		return forward;
 	}

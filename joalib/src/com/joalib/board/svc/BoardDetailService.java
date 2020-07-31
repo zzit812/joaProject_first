@@ -1,6 +1,6 @@
 package com.joalib.board.svc;
 
-import static com.joalib.board.CONN.JdbcUt.getConnection;
+
 import com.joalib.DAO.DAO;
 import java.sql.Connection;
 
@@ -9,16 +9,12 @@ import com.joalib.DTO.BoardDTO;
 public class BoardDetailService {
 
 	public BoardDTO getArticle(int board_no) throws Exception {
-		// TODO Auto-generated method stub
 		
-		BoardDTO article = null;
-		Connection con = getConnection();
-		DAO dao = new DAO();
-		///////////////////////////////////
-		dao.setConnection(con);
+		DAO dao = new DAO();		
+		DAO.getinstance();
 		
-		dao.hitUp(board_no);
-		article = dao.read_details(board_no);
+		dao.hitUp(board_no);	//조회수 증가
+		BoardDTO article = dao.read_details(board_no);	//board데이터 읽어오기
 		
 		
 		return article;

@@ -1,6 +1,5 @@
 package com.joalib.DAO;
 
-import static com.joalib.board.CONN.JdbcUt.close;
 
 import java.io.IOException;
 import java.io.Reader;
@@ -114,13 +113,14 @@ public class DAO {
 		sqlsession.close();
 		return dto;		
 	}
+	
 	public int myinsert(BoardDTO dto) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		dto = sqlsession.selectOne("board_add", dto);
+		int i = sqlsession.insert("board_add", dto);
 		sqlsession.commit();
 		sqlsession.close();
 		
-		return 1;
+		return i;
 		//수정중...디비에 에드가 되던 안되던 트루임;
 	}
 
@@ -133,13 +133,13 @@ public class DAO {
 		sqlsession.close();
 	}
 	
-	public void board_update(BoardDTO article) {
+	public int board_update(BoardDTO article) {
 		SqlSession sqlsession = sqlfactory.openSession();
-		sqlsession.selectOne("board_update", article);
+		int i = sqlsession.update("board_update", article);
 		sqlsession.commit();
 		sqlsession.close();
-	
 		
+		return i;
 	}
 
 

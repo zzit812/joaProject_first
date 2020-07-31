@@ -46,10 +46,10 @@ public class BoardWriteProAction implements dbAction {
 		
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
 		boolean isWriteSuccess = boardWriteProService.registArticle(boardBean);
-		System.out.println(isWriteSuccess);
+//		System.out.println(isWriteSuccess);
 		
 		if(!isWriteSuccess){
-			
+			//게시물 추가 실패
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -60,7 +60,7 @@ public class BoardWriteProAction implements dbAction {
 		else{
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("boardList.bo");
+			forward.setPath("board.jsp");
 			
 		}
 		
