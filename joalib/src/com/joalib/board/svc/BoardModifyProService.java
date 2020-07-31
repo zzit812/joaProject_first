@@ -14,11 +14,12 @@ public class BoardModifyProService {
 		// TODO Auto-generated method stub
 		
 		Connection con = getConnection();
-		DAO dao = DAO.getinstance();
+		DAO dao = new DAO();
 		dao.setConnection(con);
+		System.out.println("디비로 갈거셈");
 		dao.board_update(article);
 		close(con);	
-		
+		System.out.println("디비작업완료!");
 	}
 
 

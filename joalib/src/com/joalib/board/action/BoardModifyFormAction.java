@@ -16,6 +16,7 @@ public class BoardModifyFormAction implements dbAction {
 	
 		BoardDetailService boardDetailService = new BoardDetailService();
 		BoardDTO article = boardDetailService.getArticle(board_no);
+		//넘버로 조회한 게시물데이터 article에 넣었음
 		
 		request.setAttribute("article", article);
 		forward.setPath("/board_update_page.jsp");

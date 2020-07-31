@@ -13,7 +13,7 @@ public class BoardDetailService {
 		
 		BoardDTO article = null;
 		Connection con = getConnection();
-		DAO dao = DAO.getinstance();
+		DAO dao = new DAO();
 		dao.setConnection(con);
 		
 		dao.hitUp(board_no);

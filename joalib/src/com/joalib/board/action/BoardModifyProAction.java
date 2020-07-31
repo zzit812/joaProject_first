@@ -25,10 +25,12 @@ public class BoardModifyProAction implements dbAction {
 		article.setBoard_num(board_num);
 		boardModifyProService.modifyArticle(article);
 		
-		
+		System.out.println("1");
 		forward = new ActionForward();
+		System.out.println("2");
 		forward.setRedirect(true);
-		forward.setPath("boardList.bo"); 
+		System.out.println("3");
+		forward.setPath("/boardList.bo"); 
 		
 		
 		return forward;
