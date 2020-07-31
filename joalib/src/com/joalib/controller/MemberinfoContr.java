@@ -27,12 +27,14 @@ public class MemberinfoContr extends javax.servlet.http.HttpServlet{
 		Action action = null;
 		
 		if(command.equals("/memberInsert.mem")) {
+			//회원가입
 			action = new MemberInsertAction();
 			try{
 				forward=action.execute(request, response);
 			}catch(Exception e){
 				e.printStackTrace(); }
 		}else if(command.equals("/IDCheck.mem")) {
+			//로그인
 			action = new MemberIDCheck();
 			try{
 				forward=action.execute(request, response);
@@ -40,8 +42,9 @@ public class MemberinfoContr extends javax.servlet.http.HttpServlet{
 				e.printStackTrace(); }
 
 		}else if(command.equals("/memberLogout.mem")) {
-			HttpSession session = request.getSession();
-			session.invalidate();
+			//로그아웃
+//			HttpSession session = request.getSession(false);
+//			session.invalidate();
 			//
 			forward = new ActionForward();
 			forward.setRedirect(true);

@@ -7,12 +7,14 @@
 <title>JOA LIBRARY - HOME</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
 
 <style>
 	* {
 		font-family: 'Noto Sans KR', sans-serif;
 		color: #41414f;
-		background-color: #f5f5f5;
+		
 	}
 	body {
 		width: 1400px;
@@ -24,15 +26,42 @@
 	    display: block;
 	    opacity: 0;
 	}
-	li {
-		display : inline;
-	} 
+	#top_menu > li {
+		float: left;
+	    display: block;
+	    margin: 5px 20px;	    
+	}
+	#top_menu > li > a{
+		/*대메뉴*/
+		font-size: 25px;		
+    	font-weight: 400;
+		margin: 0 30px;
+	}
+	#top_menu > li > ul {
+		height: 200px;
+		overflow: hidden;
+		background-color: red;
+		margin-top: 15px;
+		position: absolute;
+		transition: all 0.2s;
+	}
+	
+	#top_menu > li > ul > li {
+		clear: both;		
+		font-size: 15px;
+		display: block;
+	}
+	#top_menu > li > ul > li > a{
+		/*소메뉴*/
+		font-size: 20px;
+	}
+	
 	a {
 		text-decoration: none;
 	}
-	nav > ul {
-		/* background: green; */
-	    padding: 15px 0px;
+	nav > ul { 
+		background: #f5f5f5;
+		padding: 10px 0;
 	    padding-left: 30px;
 	    margin: 0;
 	    /* border-top: 1px solid; */
@@ -42,15 +71,11 @@
 	    /* 맨 앞으로 보내기 */
 	    z-index: 5;
     	position: relative;
-	}
-	nav > ul > li > a {
-		font-size : 22px;
-		margin: 0 30px;
+    	height: 45px;
 	}
 	
 	#Point_1 {
-		height: 500px;
-    	/* 화면 꽉 차기 하기 : 띠 */
+		height: 650px;
 	    
 	}
 	#str {
@@ -61,7 +86,7 @@
 	    padding-top: 200px;
 	}
 	#Point_2 {
-		margin-top: 155px;
+		margin-top: 175px;
 		height: 400px;
     	background-color: #6a197d;
     	/* 화면 꽉 차기 하기 : 띠 */
@@ -125,6 +150,9 @@
 	  }
 	}
 	*/
+	
+/*========================================================*/
+
 	  
 </style>
 </head>
@@ -140,16 +168,81 @@ https://www.hancomm.co.kr/index.do
 <header>
 	<img id="logo" src="img/icon_lib.png" />
 	<nav>
-		<ul>
-			<li><a href="book_search.html">자료검색</a></li> 	<!-- 자료검색 -->
-			<li><a href="">도서마당</a></li>	<!-- 도서마당 -->
-			<li><a href="">이용안내</a></li>	<!-- 이용안내 -->
-			<li><a href="">커뮤니티</a></li>	<!-- 커뮤니티 -->
-			<li><a href="mypage_main.jsp">나의서재</a></li>	<!-- 나의서재 -->
-			<!-- <li><a href="">a</a></li> -->
-			<!-- 만약  -->
-		</ul>
-	</nav>		
+	
+				<ul id="top_menu">			
+					
+					<li><a href="book_search.html">자료검색</a>
+						<ul class ="sub_menu">
+							<li><a href="book_search.html">도서 검색</a></li>
+							<li><a href="">분야별 도서 조회</a></li>
+						</ul>
+					</li>
+					
+					<li><a href="#">도서마당</a>
+						<ul>
+							<li><a href="">신착 도서</a></li>
+							<li><a href="">베스트 셀러</a></li>
+							<li><a href="">희망도서</a></li>
+						</ul>
+					</li>
+					
+					<li><a href="#">이용안내</a>
+						<ul>
+							<li><a href="">시설안내</a></li>
+							<li><a href="">자료 현황</a></li>
+							<li><a href="">포인트</a></li>
+							<li><a href="">도서 대여</a></li>
+							<li><a href="">도서 예약</a></li>
+						</ul>
+					</li>	
+								
+					<li><a href="#">커뮤니티</a>
+						<ul>
+							<li><a href="">공지사항</a></li>
+							<li><a href="">질문과 답변</a></li>
+							<li><a href="board.jsp">자유게시판</a></li>
+							<li><a href="">불량도서 신고</a></li>
+							<li><a href="">중고도서 나눔</a></li>
+						</ul>
+					</li>
+					
+					<li><a href="mypage_main.jsp">나의서재</a>
+						<ul>
+							<li><a href="mypage_main.jsp">나의 서재</a></li>
+							<li><a href="">서비스 이용 내역</a></li>
+							<li><a href="">내가 쓴 글</a></li>
+							<li><a href="">포인트</a></li>
+							<li><a href="">정보 수정/ 탈퇴</a></li>
+						</ul>
+					</li>
+					<li>로그인</li>
+					<li>회원가입</li>
+				</ul>
+				
+				<script type="text/javascript">
+					$(function(){
+						$('#top_menu > li').hover(function(){
+							$('#top_menu > li > ul').css("height","150px");
+						},function(){
+							$('#top_menu > li > ul').css("height","0px");
+						})
+					})
+					
+					$(function() {
+					    $('.book_hover .book_add').hide();
+					    $('.book_hover').hover(function() {
+					      $(this).children('img').css("opacity","0.2")
+					      $(this).children('.book_add').show();
+					    },function(){
+					      $(this).children('img').css("opacity","1")
+					      $(this).children('.book_add').hide();
+					    })
+					  })
+
+				</script>
+				
+				<div id="window_menu"></div>
+			</nav>
 </header> 
 <section>
 	<!-- 배너 -->
@@ -189,10 +282,12 @@ https://www.hancomm.co.kr/index.do
 		var el = document.getElementById('str');		
 		(function animate() {	//애니메이션
 			str.length > 0 ? el.innerHTML += str.shift() : clearTimeout(running); 
-			var running = setTimeout(animate, 150);	//커질수록 느려짐	
+			var running = setTimeout(animate, 80);	//커질수록 느려짐	
 		}
 		
 		)();
+		
+
 		
 	</script>
 

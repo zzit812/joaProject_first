@@ -55,29 +55,6 @@ public class DAO {
 	}	
 	
 	////////////////////////////////////////////////////////////////
-	//join
-	public void member_insert (memberinfoDTO dto) {
-		SqlSession sqlsession = sqlfactory.openSession();		
-		sqlsession.insert("member_insert", dto);
-		//System.out.println(dto.getMember_id());
-		System.out.println("회원가입이 완료되었습니다.");
-		sqlsession.commit();
-		sqlsession.close();
-	}
-	
-	////////////////////////////////////////////////////////////////
-	//login
-	public String idCheck (String id) {		
-		SqlSession sqlsession = sqlfactory.openSession();		
-		String pw = null;		
-		pw = sqlsession.selectOne("memberID_Check",id);
-		sqlsession.commit();
-		sqlsession.close();
-		return pw;
-	}		
-	
-	
-	////////////////////////////////////////////////////////////////
 	//board
 	public List<BoardDTO> select_board_all() {	//전체를 뽑아오자
 		getinstance();
