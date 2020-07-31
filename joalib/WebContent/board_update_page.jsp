@@ -154,6 +154,7 @@
 					<input type="text" name="board_title" value=<%out.print(article.getBoard_title());%> />
 					<textarea id="board_text" name="board_write"><%out.print(article.getBoard_text());%></textarea>
 					<input class="button" type="submit" value = "등록" />
+					<a href="javascript:history.go(-1)"><input type="button" value="뒤로"/></a>
 				</form>
             	</div>
             	<%
